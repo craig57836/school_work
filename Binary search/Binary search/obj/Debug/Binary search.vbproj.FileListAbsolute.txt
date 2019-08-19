@@ -1,0 +1,12 @@
+C:\Users\Craig\source\repos\Binary search\Binary search\bin\Debug\Binary search.exe.config
+C:\Users\Craig\source\repos\Binary search\Binary search\bin\Debug\Binary search.exe
+C:\Users\Craig\source\repos\Binary search\Binary search\bin\Debug\Binary search.pdb
+C:\Users\Craig\source\repos\Binary search\Binary search\bin\Debug\Binary search.xml
+C:\Users\Craig\source\repos\Binary search\Binary search\obj\Debug\Binary search.vbprojAssemblyReference.cache
+C:\Users\Craig\source\repos\Binary search\Binary search\obj\Debug\Binary_search.Form1.resources
+C:\Users\Craig\source\repos\Binary search\Binary search\obj\Debug\Binary_search.Resources.resources
+C:\Users\Craig\source\repos\Binary search\Binary search\obj\Debug\Binary search.vbproj.GenerateResource.cache
+C:\Users\Craig\source\repos\Binary search\Binary search\obj\Debug\Binary search.vbproj.CoreCompileInputs.cache
+C:\Users\Craig\source\repos\Binary search\Binary search\obj\Debug\Binary search.exe
+C:\Users\Craig\source\repos\Binary search\Binary search\obj\Debug\Binary search.xml
+C:\Users\Craig\source\repos\Binary search\Binary search\obj\Debug\Binary search.pdb
