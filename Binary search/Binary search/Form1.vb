@@ -8,7 +8,6 @@
         ListBox2.Items.Clear()
         ListBox3.Items.Clear()
         ListBox4.Items.Clear()
-        ListBox5.Items.Clear()
 
         'list sorting
         'declare array of numbers and additional variables
@@ -54,6 +53,10 @@
         firstPosition = 0
         lastPoisition = 15
         searchKey = InputBox("Input the number you want to find")
+        Do while searchKey > numbers(lastPosition)
+        searchKey = InputBox("Search Key greater than the highest number in the list, enter a lower number as the search key")
+        Loop
+
         ListBox2.Items.Add("The search key is" & searchKey)
 
         Do
@@ -66,12 +69,12 @@
             End If
             If numbers(middle) = searchKey Then
                 found = True
-                ListBox3.Items.Add("Search Key " * searchKey & " Found at position " & middle)
+                ListBox3.Items.Add("Search Key " & searchKey & " Found at position " & middle)
                 ListBox4.Items.Add("Number of passes required " & passes)
             End If
         Loop Until found = True Or passes > 5
         If passes > 5 Then
-            ListBox5.Items.Add("Search Key " & searchKey & " not found!")
+            ListBox4.Items.Add("Search Key " & searchKey & " not found!")
         End If
     End Sub
 End Class
