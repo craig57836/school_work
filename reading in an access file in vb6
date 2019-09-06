@@ -1,0 +1,115 @@
+'Add the required additional libraries
+Imports System.Data.OleDb
+Public Class Form1
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'A 'try catch' block is ued to connect to the database.
+        'If any code within the Try block returns an error, the catch block is called to display the returned error message.
+        Try
+            ' Create a connection to the database
+            Dim SQLReader As OleDbDataReader 'create an object called SQLReader that is ued to read data from the database
+            Dim connection_type As String = "Provider=Microsoft.ACE.OLEDB.12.0;"
+            Dim file_location As String = "Data Source=N:\Visual Studio 2012\Projects\Doctors (access file read)\test.accdb"
+
+            'conn is used to create the connection to the database
+            Dim conn As OleDbConnection
+
+            'conn is set as a new OleDBConnection, with the parameters stored earlier
+            conn = New OleDbConnection(connection_type & file_location)
+
+            conn.Open() 'opens connection to database
+
+            'Reads and displays the data from database
+            Dim query As String = "Select * FROM [Patient]"
+            Dim command As New OleDbCommand(query, conn)
+            SQLReader = command.ExecuteReader()
+            If SQLReader.HasRows Then
+                While SQLReader.Read
+                    ListBox1.Items.Add(SQLReader("patientID") & " " & SQLReader("forename") & " " & SQLReader("surname") & " " & SQLReader("dateOfBirth") & " " & SQLReader("Address") & " " & SQLReader("contactNo"))
+                End While
+            Else
+                ListBox1.Items.Add("No results returned")
+            End If
+        Catch ex As Exception
+            ListBox1.Items.Add(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        'INSERT a new customer using inputted values
+        Try
+            Dim SQLreader As OleDbDataReader
+            Dim connection_type As String = "Proverder=Microsoft.ACE.OLEDB.12.0;"
+            Dim file_location As String = "Data Source = N:\Visual Studio 2012\Projects\Doctors (access file read)\test.accdb"
+            Dim conn As OleDbConnection
+            conn = New OleDbConnection(connection_type & file_location)
+            conn.Open()
+
+            Dim id As String = InputBox("Please enter patient ID")
+            Dim firstname As String = InputBox("Please enter the patient's first name")
+            Dim surname As String = InputBox("Please enter the customer'ssecond name")
+            Dim dob As String = InputBox("Please enter the patient's dob (DD/MM/YYYY)")
+            Dim addresss As String = InputBox("Please enter the patient's address")
+            Dim contactNo As String = InputBox("Please enter the patient's contact number")
+
+            'convert stored data into an sql query
+            Dim query As String = "INSERT INTO [patient] (forename, surname, dateOfBirth, Address, contactNo) VALUES ( " & " , ' " & firstname & " , ' " & surname & " , ' " & dob & " , ' " & addresss & "');"
+
+            'When inserting partial data, field names are required.
+            'ID information is not necessary, because ID is an auto number and the database uses the next available number.
+            ' Dim query As String = "INSERT INTO [customers] (firstname, surname) VALUES ( " & id & " , ' " & firstname & " , ' " & surname & "');"
+
+            'execute the built query 
+            Dim command As New OleDbCommand(query, conn)
+            SQLreader = command.ExecuteReader()
+
+        Catch ex As Exception
+            ListBox1.Items.Add(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        End
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        'count number of rows by a query 
+
+        ' a 'try catch' block is used to connect the database.
+        'If any code tithin the Try block returns an error, the catch block is called to display the returned error message.
+        Try
+            ' create a connection to the example database
+            Dim SQLReader As OleDbDataReader 'creates an object called SQLReader that is ued to read data from the database
+            Dim connection_type As String = "Provider=Microsoft.ACE.OLEDB.12.0;"
+            Dim file_location As String = "Data source=N:\Visual Studio 2012\Projects\Doctors (access file read)\test.accdb"
+
+            'A new object called conn is used to create the connection to the database 
+            Dim conn As OleDbConnection
+
+            'The conn object is set as a new OleDBConnection, with  the paramaters stored earlier.
+            conn = New OleDbConnection(connection_type & file_location)
+
+            conn.Open() 'open connection to database
+
+            Dim firstname As String = InputBox("Please enter firstname of patient(s) you would like to count")
+            Dim counter As Integer = 0
+            Dim query As String = "SELECT * FROM [patient] WHERE forename = '" & firstname & "';"
+            Dim command As New OleDbCommand(query, conn)
+
+            SQLReader = command.ExecuteReader()
+            If SQLReader.HasRows Then
+                While SQLReader.Read
+                    ListBox1.Items.Add(SQLReader("patientID") & " " & SQLReader("forename") & " " & SQLReader("surname"))
+                    counter = counter + 1
+                End While
+                ListBox1.Items.Add(counter & " results returned")
+            Else
+                ListBox1.Items.Add("No results returned")
+            End If
+        Catch ex As Exception
+            ListBox1.Items.Add(ex.Message)
+        End Try
+    End Sub
+End Class
