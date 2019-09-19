@@ -1,0 +1,50 @@
+Public Class Form1
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim reg_number As Integer
+        Dim reg_letters As String
+        Dim placeholder As String
+        Dim reg_letters2 As String
+        Dim placeholder2 As String
+
+        For x = 0 To 99
+            reg_letters = Int(Rnd() * 25) + 65  'generates a random number that can be represented in ascii
+            reg_letters = Chr(reg_letters)      'changes number into ascii character
+            placeholder = Int(Rnd() * 25) + 65
+            placeholder = Chr(placeholder)
+            reg_letters = reg_letters & placeholder
+
+            reg_letters2 = Int(Rnd() * 25) + 65
+            reg_letters2 = Chr(reg_letters2)
+            placeholder2 = Int(Rnd() * 25) + 65
+            placeholder2 = Chr(placeholder2)
+
+            reg_letters2 = reg_letters2 & placeholder2
+            placeholder2 = Int(Rnd() * 25) + 65
+            placeholder2 = Chr(placeholder2)
+            reg_letters2 = reg_letters2 & placeholder2
+
+            reg_number = Int(Rnd() * 19) + 1
+            If reg_number < 10 Then
+                ListBox1.Items.Add(reg_letters & "0" & reg_number & " " & reg_letters2)
+                Dim fileaddress As String = "N:/Advanced Higher Computing/names.txt"
+                My.Computer.FileSystem.WriteAllText(fileaddress, reg_letters & "0" & reg_number & " " & reg_letters2, True)
+                My.Computer.FileSystem.WriteAllText(fileaddress, vbCrLf, True) 'Line break
+
+            Else
+
+                ListBox1.Items.Add(reg_letters & reg_number & " " & reg_letters2)
+                Dim fileaddress As String = "N:/Advanced Higher Computing/names.txt"
+                My.Computer.FileSystem.WriteAllText(fileaddress, reg_letters & reg_number & " " & reg_letters2, True)
+
+                My.Computer.FileSystem.WriteAllText(fileaddress, vbCrLf, True) 'Line break
+
+            End If
+
+        Next
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        End
+    End Sub
+End Class
