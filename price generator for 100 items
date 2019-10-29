@@ -1,0 +1,12 @@
+Public Class Form1
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim price As Single
+
+        'generate 100 random prices
+        For x = 0 To 99
+            price = Int(Rnd() * 30000.99)
+
+            Dim fileaddress As String = "C:\users\craig\documents\prices.txt"
+            My.Computer.FileSystem.WriteAllText(fileaddress, "£" & price, True)
+            My.Computer.FileSystem.WriteAllText(fileaddress, vbCrLf, True) 'Line break
+        Next
